@@ -1,21 +1,20 @@
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
+        int count = 0;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Input number");
+        System.out.println("Input a number: ");
         int n = sc.nextInt();
-        System.out.println("Input array:");
         int[] arr = new int[n];
-        int max = 0;
-        int indexMax = 0;
+        System.out.println("Input array: ");
         for(int i = 0; i < n; i++){
             arr[i] = sc.nextInt();
-            if(Math.abs(arr[i]) > max){
-                max = Math.abs(arr[i]);
-                indexMax = i;
+            if(i > 0 && i < n-1 && arr[i] > arr[i-1] && arr[i] > arr[i+1]){
+                count = count + 1;
             }
         }
-        System.out.println(indexMax);
+        System.out.println(count);
     }
 }
