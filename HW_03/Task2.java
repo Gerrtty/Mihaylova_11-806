@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Input number");
+        System.out.println("Input number: ");
         int n = sc.nextInt();
-        System.out.println("Input array:");
+        System.out.println("Input array: ");
         int[] arr = new int[n];
         int max = 0;
         int indexMax = 0;
