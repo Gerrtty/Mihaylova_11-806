@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Main {
+public class Task3 {
     public static void main(String[] args) {
         int count = 0;
         Scanner sc = new Scanner(System.in);
