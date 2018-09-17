@@ -13,6 +13,6 @@ public class Main {
                 count++;
             }
         }
-        System.out.println(count); //Локальный максимум
+        System.out.println(count); 
     }
 }

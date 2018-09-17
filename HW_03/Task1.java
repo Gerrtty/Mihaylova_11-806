@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Введите кол-во студентов: ");
+        System.out.println("Input the number of students : ");
         int n = sc.nextInt();
-        System.out.println("Введите рост студентов: ");
+        System.out.println("Input height of students: ");
         int arr[] = new int[n];
-        int count = 0; //Счётчик
-        int result = 0; //Средний рост
+        int count = 0; //Counter
+        int result = 0; //Medium height
         int sum = 0; 
         for(int i = 0; i < n; i++){
             arr[i] = sc.nextInt();
@@ -20,7 +20,7 @@ public class Main {
                 count++;
             }
         }
-        System.out.println(result); // Вывод среднего роста
-        System.out.println(count); // Вывод кол-ва студентов, чей рост выше среднего
+        System.out.println(result);
+        System.out.println(count); 
     }
 }
