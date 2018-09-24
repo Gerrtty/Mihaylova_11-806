@@ -4,7 +4,7 @@ public class Task2{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.println("Input string: ");
-        String str = sc.next();
+        String str = sc.nextLine();
         System.out.println(itrim(str));
     }
     static String itrim(String str){
