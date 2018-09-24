@@ -10,13 +10,16 @@ public class Task2{
     static String itrim(String str){
         char[] arr = str.toCharArray();
         int x = 0;
-        char[] arr2 = new char[str.length() - x];
-        for(int i = 0, j = 0; i < str.length(); i++, j++){
+        for(int i = 0; i < str.length(); i++){
             if(arr[i] == ' '){
                 x++;
             }
+        }
+		char[] arr2 = new char[str.length() - x];
+        for (int i = 0, j = 0; j < str.length() - x; i++, j++) {
             arr2[j] = arr[i + x];
         }
+        str = String.valueOf(arr2);
         return str;
     }
 }
