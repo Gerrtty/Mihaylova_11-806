@@ -9,10 +9,10 @@ public class Main {
         System.out.println("Input n: ");
         int n = sc.nextInt();
         if(fibonachi(n, f1, f2) == 0){
-            System.out.println("This number not included in the fibonacci sequence");
+            System.out.println("No");
         }
         else {
-            System.out.println("This number included in the fibonacci sequence");
+            System.out.println("Yes");
         }
 
     }
