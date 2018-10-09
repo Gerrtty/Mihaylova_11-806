@@ -11,7 +11,7 @@ public class Task5 {
         int k = sc.nextInt();
         System.out.println("Input amount of columns first matrix:");
         int t = sc.nextInt();
-        if(m != t || n != k){
+        if(n != k){
             System.out.println("Error");
             System.exit(0);
         }
