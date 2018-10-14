@@ -4,28 +4,27 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
+        for (int i = 0; i < maxLength(); i++) {
+            sortInFiles(i);
+            merge();
+        }
     }
     static void merge() throws IOException {
-        System.out.println("Input amount of strings: ");
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
         PrintWriter pw = new PrintWriter(new File("in.txt"));
-        Scanner[] scanners = new Scanner[n];
-        for (int i = 0; i < n; i++) {
+        Scanner[] scanners = new Scanner[26];
+        for (int i = 0; i < 26; i++) {
             scanners[i] = new Scanner(new File("out" + i + ".txt"));
-        }
-        for (int i = 0; i < n; i++) {
-            while (scanners[i].hasNext()) {
-                pw.println(scanners[i].next());
+            while (scanners[i].hasNextLine()) {
+                pw.println(scanners[i].nextLine());
             }
         }
         pw.close();
     }
-    public int maxLength() throws IOException{
+    static int maxLength() throws IOException{
         Scanner sc = new Scanner(new File("in.txt"));
         int max = 0;
-        while (sc.hasNext()){
-            String str = sc.next();
+        while (sc.hasNextLine()){
+            String str = sc.nextLine();
             int strLength = str.length();
             if(strLength > max){
                 max = strLength;
@@ -34,21 +33,23 @@ public class Main {
         return max;
     }
     static void sortInFiles(int k) throws IOException {
-        PrintWriter[] printWriters = new PrintWriter[n];
-        for (int i = 0; i < n; i++) {
-            printWriters[i] = new PrintWriter(new File("out" + i + ".txt"));
+        PrintWriter[] pws = new PrintWriter[26];
+        for (int i = 0; i < 26; i++) {
+            pws[i] = new PrintWriter(new File("charsLetters" + (char) (i + 'A') + ".txt"));
         }
-        Scanner sc = new Scanner(new File("in.txt"));
-        while (sc.hasNextInt()) {
-            String str = sc.next();
-            char[] arr = new char[];
-            for (int i = 0; i < k; i++) {
-                c = c / 10;
+        Scanner sc = new Scanner(new File("out.txt"));
+        while (sc.hasNextLine()) {
+            String str = sc.nextLine();
+            char[] arr = str.toCharArray();
+            int leng = str.length();
+            if(leng > k){
+                pws[(int) arr[k]-'a'].println(str);
+            } else {
+                pws[0].println(str);
             }
-            printWriters[c % 10].println(x);
         }
-        for (int i = 0; i < 10; i++) {
-            printWriters[i].close();
+        for (int i = 0; i < 26 ; i++) {
+            pws[i].close();
         }
     }
 }
