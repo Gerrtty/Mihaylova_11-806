@@ -1,12 +1,10 @@
 import java.util.*;
-import java.lang.Math;
-
 import static java.lang.StrictMath.sqrt;
 
 public class CosineSimilarity extends JaccardTextAnalyzer{
     public double analyze(TextProvider te1, TextProvider te2){
-        String str1 = te1.getText();
-        String str2 = te2.getText();
+        String str1 = delete(te1.getText());
+        String str2 = delete(te2.getText());
         List<String> str3 = tokenize(str1 + " " + str2);
         List<String> list1 = toList(str1);
         List<String> list2 = toList(str2);
@@ -15,10 +13,9 @@ public class CosineSimilarity extends JaccardTextAnalyzer{
         return cosineSimilarity(arrayForList1, arrayForList2);
     }
     public int[] fr(List<String> allWords, List<String> eq){
-        int c;
         int[] mas = new int[allWords.size()];
         for (int i = 0; i < mas.length; i++){
-            c = 0;
+            int c = 0;
             for (int j = 0; j < eq.size(); j++) {
                 if (allWords.indexOf(i) == eq.indexOf(j) ){
                     c++;
@@ -57,4 +54,9 @@ public class CosineSimilarity extends JaccardTextAnalyzer{
         }
         return coef;
     }
+    public String delete(String st){
+        st = st.replace(",", "");
+        return st;
+    }
+
 }
