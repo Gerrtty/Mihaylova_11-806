@@ -1,11 +1,9 @@
 import java.io.File;
 
-import java.io.FileNotFoundException;
-
 public class Main {
     public static void main(String[] args) {
-        String s1 = "Сегодня погода погода не очень хорошая, весь день идёт дождь";
-        String s2 = "Сегодня пгода замечательная, целый день светит солнце";
+        String s1 = "Сегодня погода не очень хорошая, весь день идёт дождь";
+        String s2 = "Сегодня погода замечательная, целый день светит солнце";
         JaccardTextAnalyzer a = new JaccardTextAnalyzer();
         double coef1 = a.analyze(new SimpleTextProvider(s1), new SimpleTextProvider(s2));
         System.out.println("Коэфициент = " + coef1);

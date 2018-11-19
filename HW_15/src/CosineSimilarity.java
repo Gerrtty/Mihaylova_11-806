@@ -12,12 +12,14 @@ public class CosineSimilarity extends JaccardTextAnalyzer{
         double[] arrayForList2 = tf(fr(str3, list2));
         return cosineSimilarity(arrayForList1, arrayForList2);
     }
+
     public int[] fr(List<String> allWords, List<String> eq){
+        int c;
         int[] mas = new int[allWords.size()];
         for (int i = 0; i < mas.length; i++){
-            int c = 0;
+            c = 0;
             for (int j = 0; j < eq.size(); j++) {
-                if (allWords.indexOf(i) == eq.indexOf(j) ){
+                if (allWords.get(i).equals(eq.get(j)) ){
                     c++;
                 }
             }
@@ -40,13 +42,15 @@ public class CosineSimilarity extends JaccardTextAnalyzer{
         double root = 0;
         for (int i = 0; i < mass.length; i++){
             tfIfd[i] = mass[i] * mass[i];
-            root = sqrt(root + tfIfd[i]);
+            root = root + tfIfd[i];
         }
+        root = Math.sqrt(root);
         for(int i = 0; i < mass.length; i++){
             tfIfd[i] = mass[i] / root;
         }
         return tfIfd;
     }
+
     public double cosineSimilarity(double[] m1, double[] m2){
         double coef = 0;
         for(int i = 0; i < m1.length; i++){
@@ -54,9 +58,9 @@ public class CosineSimilarity extends JaccardTextAnalyzer{
         }
         return coef;
     }
+
     public String delete(String st){
         st = st.replace(",", "");
         return st;
     }
-
 }
