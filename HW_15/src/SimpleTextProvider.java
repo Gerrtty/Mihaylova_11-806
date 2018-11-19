@@ -1,7 +1,7 @@
 public class SimpleTextProvider implements TextProvider {
     private String text;
 
-    public SimpleTextProvider(String text) { //Конструктор
+    public SimpleTextProvider(String text) { 
         this.text = text;
     }
 
