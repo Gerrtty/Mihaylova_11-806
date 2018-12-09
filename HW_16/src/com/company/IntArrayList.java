@@ -56,7 +56,15 @@ public  class IntArrayList implements IntList {
 
     @Override
     public void remove(int index) {
-
+        int[] newArr = new int[elements.length - 1];
+        for (int i = 0; i < index; i++){
+            newArr[i] = elements[i];
+        }
+        for (int i = index + 1; i < elements.length; i++){
+            newArr[i - 1] = elements[i];
+        }
+        elements = newArr;
+        this.count--;
     }
 
     @Override
@@ -89,24 +97,18 @@ public  class IntArrayList implements IntList {
     }
 
     @Override
-    public void AddAlll(IntList list, int index) {
-       for (int i = 0; i < list.size(); i++){
-           this.add(list.get(i), index + i);
-       }
-    }
-    public void add(int e, int index){
-       int addd = index;
-       if(index >= this.count){
-            addd = this.size();
-       }
-       int[] lastElements = Arrays.copyOfRange(this.elements, addd, this.count);
-       while (this.elements.length <= index){
-           this.grow();
-       }
-       this.count = index;
-       this.add(e);
-       for (int i = 0; i < lastElements.length; ++i) {
-           this.add(lastElements[i]);
-       }
-    }
+    public void addAlll(IntList list, int index) {
+        int[] arr3 = new int[elements.length + list.size()];
+        for (int i = 0; i < index + 1; i++){
+            arr3[i] = elements[i];
+        }
+        for (int i = index + 1, j = 0; j < list.size(); i++, j++){
+            arr3[i] = list.get(j);
+        }
+        for (int i = list.size() + index + 1, j = index + 1; i < arr3.length; i++, j++){
+            arr3[i] = elements[j];
+        }
+        elements = arr3;
+        this.count = arr3.length;
+   }
 }
