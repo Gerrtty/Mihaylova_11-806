@@ -97,7 +97,9 @@ public  class IntArrayList implements IntList {
     }
 
     @Override
-    public void addAlll(IntList list, int index) {
+    public void addAll(IntList list, int index) {
+		int oldLength = size();
+        int addingListLength = list.size();
         int[] arr3 = new int[elements.length + list.size()];
         for (int i = 0; i < index + 1; i++){
             arr3[i] = elements[i];
@@ -109,6 +111,6 @@ public  class IntArrayList implements IntList {
             arr3[i] = elements[j];
         }
         elements = arr3;
-        this.count = arr3.length;
+        this.count = oldLength + addingListLength;
    }
 }
