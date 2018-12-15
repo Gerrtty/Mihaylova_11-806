@@ -12,6 +12,6 @@ public class Main {
         for(int i = 0; i < ml.size(); i++){
             System.out.println(ml.get(i));
         }
-        //System.out.println(ml.contains(10));
+        System.out.println(ml.contains(10));
     }
 }

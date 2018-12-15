@@ -61,6 +61,7 @@ public class MyLinkedList<T> {
             if(current.getValue().equals(value)){
                 return true;
             }
+            current = current.getNext();
         }
         return false;
     }
