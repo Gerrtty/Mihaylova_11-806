@@ -17,5 +17,5 @@ public interface IntList {
 
     void addAll(IntList list); //Добавление элементов в конец
 
-    void addAlll(IntList list, int index);
+    void addAll(IntList list, int index);
 }

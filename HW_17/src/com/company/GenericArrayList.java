@@ -35,7 +35,7 @@ public class GenericArrayList<T> implements Iterable<T> {
 
     //число элементов в списке
     int size() {
-        return elements.length;
+        return this.count;
     }
 
     //есть ли в списке такой элемент
@@ -80,7 +80,18 @@ public class GenericArrayList<T> implements Iterable<T> {
     //добавление всех элементов из списка list в данный список
     //начиная с позиции index
     void addAll(GenericArrayList<T> list, int index) {
-
+		T[] arr3 = (T[]) new Object[elements.length + list.size()];
+        for (int i = 0; i < index + 1; i++){
+            arr3[i] = elements[i];
+        }
+        for (int i = index + 1, j = 0; j < list.size(); i++, j++){
+            arr3[i] = list.get(j);
+        }
+        for (int i = list.size() + index + 1, j = index + 1; i < arr3.length; i++, j++){
+            arr3[i] = elements[j];
+        }
+        elements = arr3;
+        this.count = this.size() + list.size();
     }
 
     @Override

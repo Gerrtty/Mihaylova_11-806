@@ -15,7 +15,7 @@ public class Main {
         arr2.add(2);
         arr2.add(3);
 
-        arr.addAlll(arr2, 2);
+        arr.addAll(arr2, 2);
         //arr.remove(2);
 
         for (int i = 0; i < arr.size(); i++){
