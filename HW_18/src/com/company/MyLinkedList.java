@@ -90,12 +90,18 @@ public class MyLinkedList<T> {
             throw new IndexOutOfBoundsException(index + " does not exist");
         }
         Node before = head;
-        for(int i = 0; i < index - 1; i++){
-            before = before.getNext();
-        }
         Node last = list.getLast();
-        last.setNext(before.getNext());
-        before.setNext(list.getFirst());
+        if(index == 0){
+            last.setNext(head);
+            head = list.getFirst();
+        }
+        else {
+            for (int i = 0; i < index - 1; i++) {
+                before = before.getNext();
+            }
+            last.setNext(before.getNext());
+            before.setNext(list.getFirst());
+        }
         count += list.size();
     }
 
