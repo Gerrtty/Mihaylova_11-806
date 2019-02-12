@@ -11,7 +11,7 @@ public class Stack<T> {
     }
 
     public T pop(){
-        if(count == 0){
+        if(isEmpty()){
             throw new IllegalArgumentException("Stack is empty");
         }
         T e = first.getValue();
