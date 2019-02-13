@@ -18,13 +18,15 @@ public class Main {
         Scanner sc = new Scanner(in);
 
         int n = 1;
-        while (sc.hasNext()){
-            String s = (sc.next().toLowerCase().replaceAll("\\,|\\.|\\!|\\?|\\\" ", ""));
-            if(sm.isRepeat(s)){
-                sm.put(s, sm.get(s) + 1);
-            }
-            else {
-                sm.put(s, n);
+        while (sc.hasNextLine()){
+            while (sc.hasNext()){
+                String s = (sc.next().toLowerCase().replaceAll("\\,|\\.|\\!|\\?|\\\" ", ""));
+                if(sm.isRepeat(s)){
+                    sm.put(s, sm.get(s) + 1);
+                }
+                else {
+                    sm.put(s, n);
+                }
             }
         }
         sm.print();
