@@ -20,7 +20,7 @@ public class Main {
         int n = 1;
         while (sc.hasNextLine()){
             while (sc.hasNext()){
-                String s = (sc.next().toLowerCase().replaceAll("\\,|\\.|\\!|\\?|\\\" ", ""));
+                String s = (sc.next().toLowerCase().replaceAll("\\\"|\\,|\\.|\\!|\\?|\\:|\\-|\\;", ""));
                 if(sm.isRepeat(s)){
                     sm.put(s, sm.get(s) + 1);
                 }
