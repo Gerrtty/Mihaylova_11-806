@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        Queue<Integer> q = new Queue<>(3);
+        QueueLinkedList<Integer> q = new QueueLinkedList<>();
         q.enqueue(1);
         q.enqueue(2);
         q.enqueue(3);
