@@ -18,6 +18,9 @@ public class QueueLinkedList<T> {
         }
     }
     public T dequeue(){
+        if(isEmpty()){
+            throw new IllegalArgumentException("Queue is empty");
+        }
         T e = first.getValue();
         first = first.getNext();
         return e;
