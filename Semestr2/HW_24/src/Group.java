@@ -18,7 +18,7 @@ public class Group{
 
     public void add(Student student){
         if(n == SIZE){
-            throw new IllegalArgumentException("PlayList is overflow");
+            throw new IllegalArgumentException("Group is overflow");
         }
         int c = 0;
         if(comparator == null){
