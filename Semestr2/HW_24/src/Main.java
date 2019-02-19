@@ -2,7 +2,7 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
-        Student s = new Student("veronika", 18, 11705, 2, 686929797);
+        Student s = new Student("Veronika", 18, 11705, 2, 686929797);
         Student s2 = new Student("Dmitriy", 17, 12309, 1, 676867676);
         Student s3 = new Student("Kamil", 19, 10703, 3, 667839872);
 
