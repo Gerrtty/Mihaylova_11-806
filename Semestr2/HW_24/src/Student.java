@@ -4,13 +4,15 @@ public class Student implements Comparable<Student>{
     int passportNumber;
     int numberOfGroup;
     int course;
+    int rating;
 
-    public Student(String name, int age, int numberOfGroup, int course, int passportNumber){
+    public Student(int rating, String name, int age, int numberOfGroup, int course, int passportNumber){
         this.name = name;
         this.age = age;
         this.passportNumber = passportNumber;
         this.numberOfGroup = numberOfGroup;
         this.course = course;
+        this.rating = rating;
     }
 
     public boolean equals(Object obj){
@@ -34,12 +36,13 @@ public class Student implements Comparable<Student>{
 
     @Override
     public int compareTo(Student s) {
-        return this.age - s.age;
+        return this.rating - s.rating;
     }
 
     @Override
     public String toString(){
         return "This student name is " + name + " " +  age + " years old," +
-                " he/she learning in " + numberOfGroup + " group" + " on " + course + "th" + " course";
+                " he/she learning in " + numberOfGroup + " group" + " on " + course + "th" + " course,"
+                + " his/her rating = " + rating;
     }
 }

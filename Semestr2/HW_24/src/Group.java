@@ -1,17 +1,17 @@
 import java.util.Comparator;
 
-public class ListOfStudents{
+public class Group{
     Student[] list;
     static int SIZE = 10;
     int n = 0;
     private Comparator<Student> comparator;
 
 
-    public ListOfStudents(){
+    public Group(){
         list = new Student[SIZE];
     }
 
-    public ListOfStudents(Comparator<Student> comparator){
+    public Group(Comparator<Student> comparator){
         this();
         this.comparator = comparator;
     }
