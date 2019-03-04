@@ -11,19 +11,22 @@ public class MyScanner{
     }
 
     int nextInt() throws IOException {
-        int x; int i = 0;
+        int x; int i = 0; int y;
         int[] arr = new int[20];
-        while ((x = is.read()) != 32 && x > 47 && x < 58){
+        while ((x = is.read()) != 32 && x != -1){
             arr[i++] = x;
         }
         String s = "";
         for(int j = 0; j < i; j++){
             s += (char) arr[j];
         }
-        if(s.equals("")){
-            throw new InputMismatchException("Следующий элемент не int");
+        try{
+            y = Integer.parseInt(s);
         }
-        return Integer.parseInt(s);
+        catch (NumberFormatException e){
+            throw new InputMismatchException();
+        }
+        return y;
     }
 
     public double nextDouble() throws IOException{

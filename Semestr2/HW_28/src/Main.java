@@ -8,6 +8,6 @@ public class Main {
         File f = new File("input.txt");
         InputStream i = new FileInputStream(f);
         MyScanner m = new MyScanner(i);
-        System.out.println(m.next());
+        System.out.println(m.nextInt());
     }
 }
