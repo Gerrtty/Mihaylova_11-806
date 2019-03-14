@@ -14,10 +14,10 @@ public class Main {
 
 
     public static void permutation(ArrayList<String> al) {
-        int c = 1; int k = 0;
+        int c = 0;
         int n = factorial(al.get(0).length());
-        while (c < n){
-            String s = al.get(k);
+        while (n > 1){
+            String s = al.get(c);
             char[] charArray = s.toCharArray();
             for (int i = 0; i < s.length() - 1; i++){
                 char element = charArray[i];
@@ -26,10 +26,10 @@ public class Main {
                 String str = charToString(charArray);
                 if(!(al.contains(str))){
                     al.add(str);
-                    c++;
+                    n--;
                 }
             }
-            k++;
+            c++;
         }
     }
 
