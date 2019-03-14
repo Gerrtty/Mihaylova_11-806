@@ -36,8 +36,7 @@ public class Main {
     public static void printList(ArrayList<String> arrayList){
         int k = 1;
         for (String s : arrayList){
-            System.out.print(k++ + " ");
-            System.out.println(s);
+            System.out.print(k++ + " " + s + "\n");
         }
     }
 
