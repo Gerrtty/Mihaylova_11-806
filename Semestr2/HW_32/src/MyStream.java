@@ -28,13 +28,9 @@ public class MyStream<T> {
 
     public <R> MyStream map(Function<T, R> mapper) {
         MyLinkedList<R> newMyLinkedList = new MyLinkedList<>();
-        R[] arr = (R[]) new Object[linkedList.size()];
         for (int i = 0; i < linkedList.size(); i++) {
             T obj = linkedList.get(i);
-            arr[i] = mapper.apply(obj);
-        }
-        for (int i = 0; i < arr.length; i++) {
-            newMyLinkedList.add(arr[i]);
+            newMyLinkedList.add(mapper.apply(obj));
         }
         return new MyStream<>(newMyLinkedList);
     }
