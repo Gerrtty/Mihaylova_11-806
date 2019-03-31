@@ -1,4 +1,7 @@
+import java.util.LinkedList;
+
 public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySearchTree<T> {
+
     private class TreeNode {
         T value;
         TreeNode left;
@@ -32,22 +35,98 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
     public boolean contains(T t) { return contains(root, t); }
 
     private boolean contains(TreeNode root, T t){
-        if(root == null){
-            return false;
-        }
-        int res = root.value.compareTo(t);
-        if(res == 0){
-            return true;
-        }
-        if(res > 0) {
-            return contains(root.left, t);
-        }
-        else {
-            return contains(root.right, t);
-        }
+        return find(root, t) != null;
     }
 
     public void remove(T t) {
+        remove(root, t);
+    }
+
+    private void remove(TreeNode root, T t){
+        TreeNode parent = findParent(root, t);
+        TreeNode current = find(root, t);
+        if(parent != null){
+            if(current.right == null && current.left == null){
+                if(parent.right.value.equals(current.value)){
+                    parent.right = null;
+                }
+                else parent.left = null;
+            }
+            else if(current.right == null){
+                if(parent.right.value.equals(current.value)){
+                    parent.right = current.left;
+                }
+                else parent.left = current.left;
+            }
+            else if(current.left == null){
+                if(parent.right.value.equals(current.value)){
+                    parent.right = current.right;
+                }
+                else parent.left = current.right;
+            }
+            else {
+                if(current.right.left == null){
+                    TreeNode newNode = current.right;
+                    newNode.right = current.right.right;
+                    newNode.left = current.left;
+                    if(parent.right.value.equals(current.value)){
+                        parent.right = newNode;
+                    }
+                    else{
+                        parent.left = newNode;
+                    }
+                }
+                else {
+                    TreeNode newNode = current.right;
+                    newNode.left = current.left;
+                    TreeNode tn = current.right.right;
+                    tn.left = current.right.left;
+                    newNode.right = tn;
+                    if(parent.right.value.equals(current.value)){
+                        parent.right = newNode;
+                    }
+                    else{
+                        parent.left = newNode;
+                    }
+                }
+            }
+        }
+    }
+
+    private TreeNode find(TreeNode root, T t){
+        if(root == null){
+            return null;
+        }
+        int res = root.value.compareTo(t);
+        if(res > 0){
+            root = find(root.left, t);
+        }
+        if(res < 0){
+            root = find(root.right, t);
+        }
+        return root;
+    }
+
+
+    private TreeNode findParent(TreeNode root, T t){
+        TreeNode parent = root;
+        if(root == null){
+            return null;
+        }
+        int res = root.value.compareTo(t);
+        if(res > 0){
+            if(parent.right != null && parent.right.value.compareTo(t) == 0 || parent.left != null && parent.left.value.compareTo(t) == 0){
+                return parent;
+            }
+            else root = findParent(root.left, t);
+        }
+        if(res < 0){
+            if(parent.right != null && parent.right.value.compareTo(t) == 0 || parent.left != null && parent.left.value.compareTo(t) == 0){
+                return parent;
+            }
+            else root = findParent(root.right, t);
+        }
+        return parent;
     }
 
     @Override
@@ -65,5 +144,20 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
 
     @Override
     public void printAllByLevels() {
+        LinkedList<TreeNode> q = new LinkedList<>();
+        if(root == null){
+            return;
+        }
+        q.add(root);
+        while (!q.isEmpty()){
+            TreeNode t = q.poll();
+            System.out.print(t.value + " ");
+            if(t.left != null){
+                q.add(t.left);
+            }
+            if(t.right != null){
+                q.add(t.right);
+            }
+        }
     }
 }
