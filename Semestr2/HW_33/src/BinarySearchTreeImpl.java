@@ -53,10 +53,12 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
         TreeNode current = find(root, t);
         if (parent != null) {
             if (current.right == null && current.left == null) {
-                if (parent.right.value.equals(current.value)) {
+                if (parent.right != null && parent.right.value.equals(current.value)) {
                     parent.right = null;
                 }
-                else parent.left = null;
+                else if(parent.left != null && parent.left.value.equals(current.value)){
+                    parent.left = null;
+                }
             }
             else if (current.right == null) {
                 if (parent.right.value.equals(current.value)) {
@@ -136,13 +138,13 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
             if(parent.right != null && parent.right.value.compareTo(t) == 0 || parent.left != null && parent.left.value.compareTo(t) == 0){
                 return parent;
             }
-            else root = findParent(root.left, t);
+            else parent = findParent(root.left, t);
         }
         if(res < 0){
             if(parent.right != null && parent.right.value.compareTo(t) == 0 || parent.left != null && parent.left.value.compareTo(t) == 0){
                 return parent;
             }
-            else root = findParent(root.right, t);
+            else parent = findParent(root.right, t);
         }
         return parent;
     }
