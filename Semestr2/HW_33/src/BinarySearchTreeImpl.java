@@ -32,22 +32,39 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
     public boolean contains(T t) { return contains(root, t); }
 
     private boolean contains(TreeNode root, T t){
-        if(root == null){
+        if(find(root, t) == null)
             return false;
-        }
-        int res = root.value.compareTo(t);
-        if(res == 0){
+        else
             return true;
-        }
-        if(res > 0) {
-            return contains(root.left, t);
-        }
-        else {
-            return contains(root.right, t);
-        }
     }
 
     public void remove(T t) {
+        root = remove(root, t);
+    }
+
+    private TreeNode remove(TreeNode root, T t){
+        root = find(root, t);
+        if(root == null){
+            throw new IllegalArgumentException();
+        }
+        if(root.right == null && root.left == null){
+            root = null;
+        }
+        return root;
+    }
+
+    private TreeNode find(TreeNode root, T t){
+        if(root == null){
+            return null;
+        }
+        int res = root.value.compareTo(t);
+        if(res > 0){
+            root = find(root.left, t);
+        }
+        if(res < 0){
+            root = find(root.right, t);
+        }
+        return root;
     }
 
     @Override
