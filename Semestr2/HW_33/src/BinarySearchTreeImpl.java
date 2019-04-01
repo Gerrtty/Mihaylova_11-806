@@ -38,10 +38,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
     }
 
     private boolean contains(TreeNode root, T t) {
-        if (find(root, t) == null)
-            return false;
-        else
-            return true;
+        return find(root, t) != null;
     }
 
     public void remove(T t) {
