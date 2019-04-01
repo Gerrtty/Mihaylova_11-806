@@ -97,6 +97,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
         }
     }
 
+
     private TreeNode findLastChild(TreeNode node){
         TreeNode treeNode = node.left;
         while (treeNode != null){
@@ -122,8 +123,6 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
         }
         return root;
     }
-
-
 
     private TreeNode findParent(TreeNode root, T t){
         TreeNode parent = root;
