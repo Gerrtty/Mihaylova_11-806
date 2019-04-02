@@ -49,7 +49,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
         TreeNode parent = findParent(root, t);
         TreeNode current = find(root, t);
         if (parent != null) {
-            //Если обоих детей нет, то удаляем текущий узел и обнуляем ссылку на него у родительского узла
+            // Если обоих детей нет, то удаляем текущий узел и обнуляем ссылку на него у родительского узла
             if (current.right == null && current.left == null) {
                 if (parent.right != null && parent.right.value.equals(current.value)) {
                     parent.right = null;
@@ -58,7 +58,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
                     parent.left = null;
                 }
             }
-            //Если одного из детей нет
+            // Если одного из детей нет
             else if (current.right == null) {
                 if (parent.right.value.equals(current.value)) {
                     parent.right = current.left;
@@ -72,7 +72,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
                 else parent.left = current.right;
             }
             else {
-                //Если отсутствует левый узел правого поддерева (n->right->left)
+                // Если отсутствует левый узел правого поддерева (n->right->left)
                 if (current.right.left == null) {
                     TreeNode newNode = current.right;
                     newNode.right = current.right.right;
@@ -84,7 +84,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
                     }
                 }
                 else {
-                    TreeNode newNode = findLastChild(current);
+                    TreeNode newNode = findLastChild(current); // Самый левый узел правого поддерева
                     TreeNode parentNewNode = findParent(root, newNode.value);
                     parentNewNode.left = null;
                     newNode.right = current.right;
@@ -98,7 +98,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
                 }
             }
         }
-        //Если удаляемый узел - корень дерева
+        // Если удаляемый узел - корень дерева
         else {
             TreeNode newRoot = findNewRoot(current);
             TreeNode parentNewRoot = findParent(root, newRoot.value);
