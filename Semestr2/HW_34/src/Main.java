@@ -2,42 +2,49 @@ import java.lang.reflect.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException, InvocationTargetException {
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
         getMany(Student.class, "John" , 18).stream().forEach(s -> System.out.println(s));
         System.out.println();
         Integer age = 19;
         getMany(Student.class, "Kris", age).stream().forEach(s -> System.out.println(s));
     }
 
-    public static <T> List <T> getMany(Class<T> c, Object... params) throws IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static <T> List<T> getMany(Class<T> c, Object... params) throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
         int count = 10, length = params.length;
-        List<T> l = new ArrayList<>();
-        Class[] arr = new Class[length];
+        Class[] classes = new Class[length];
         for (int i = 0; i < length; i++) {
-            arr[i] = params[i].getClass();
+            classes[i] = params[i].getClass();
         }
-        try {
-            Constructor constructor = c.getConstructor(arr);
-        }
-        catch (NoSuchMethodException e){
-            for (int i = 0; i < length; i++) {
-                if(params[i].getClass() == Integer.class){
-                    arr[i] = int.class;
+        Class[] arr = new Class[length];
+        Constructor[] constructors = c.getConstructors();
+        for(Constructor constructor : constructors){
+            Class[] paramTypes = constructor.getParameterTypes();
+            if(paramTypes.length == classes.length){
+                for (int i = 0; i < length; i++){
+                    if(classes[i].equals(paramTypes[i])){
+                        arr[i] = paramTypes[i];
+                    }
+                    else if(classes[i].equals(Integer.class)){
+                        arr[i] = int.class;
+                    }
+                    else if(classes[i].equals(Boolean.class)){
+                        arr[i] = boolean.class;
+                    }
+                    else if(classes[i].equals(Character.class)){
+                        arr[i] = char.class;
+                    }
+                    else if(classes[i].equals(Double.class)){
+                        arr[i] = double.class;
+                    }
+                    else {
+                        continue;
+                    }
                 }
-                if(params[i].getClass() == Double.class){
-                    arr[i] = double.class;
-                }
-                if(params[i].getClass() == Long.class){
-                    arr[i] = long.class;
-                }
-                if(params[i].getClass() == Boolean.class){
-                    arr[i] = boolean.class;
-                }
-                if(params[i].getClass() == Character.class){
-                    arr[i] = char.class;
-                }
+                break;
             }
+            else continue;
         }
+        List<T> l = new ArrayList<>();
         try {
             Constructor constructor = c.getConstructor(arr);
             for (int i = 0; i < count; i++) {
@@ -46,7 +53,7 @@ public class Main {
             }
         }
         catch (NoSuchMethodException e){
-            throw new IllegalAccessException();
+            throw new IllegalArgumentException("В классе не существует конструкторов, принимающих заданные параметры");
         }
         return l;
     }
