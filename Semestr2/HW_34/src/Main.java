@@ -4,9 +4,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
         getMany(Student.class, "John" , 18).stream().forEach(s -> System.out.println(s));
-
         System.out.println();
-
         getMany(Student.class).stream().forEach(s -> System.out.println(s));
     }
 
