@@ -24,16 +24,16 @@ public class Main {
                 if(params[i].getClass() == Integer.class){
                     arr[i] = int.class;
                 }
-                else if(params[i].getClass() == Double.class){
+                if(params[i].getClass() == Double.class){
                     arr[i] = double.class;
                 }
-                else if(params[i].getClass() == Long.class){
+                if(params[i].getClass() == Long.class){
                     arr[i] = long.class;
                 }
-                else if(params[i].getClass() == Boolean.class){
+                if(params[i].getClass() == Boolean.class){
                     arr[i] = boolean.class;
                 }
-                else if(params[i].getClass() == Character.class){
+                if(params[i].getClass() == Character.class){
                     arr[i] = char.class;
                 }
             }
