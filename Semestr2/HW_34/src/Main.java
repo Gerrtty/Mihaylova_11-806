@@ -3,13 +3,11 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
-        List<Student> students = getMany(Student.class, "John" , 18);
-        students.stream().forEach(s -> System.out.println(s));
+        getMany(Student.class, "John" , 18).stream().forEach(s -> System.out.println(s));
 
         System.out.println();
 
-        List<Student> students1 = getMany(Student.class);
-        students1.stream().forEach(s -> System.out.println(s));
+        getMany(Student.class).stream().forEach(s -> System.out.println(s));
     }
 
     public static <T> List <T> getMany(Class<T> c, Object... params) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
