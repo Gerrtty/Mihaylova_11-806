@@ -105,7 +105,6 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
             parentNewRoot.right = null;
             newRoot.right = current.right;
             newRoot.left = current.left;
-            // :(((
         }
     }
 
