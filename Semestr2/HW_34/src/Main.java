@@ -4,9 +4,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
         getMany(Student.class, "John" , 18).stream().forEach(s -> System.out.println(s));
-        System.out.println();
-        Integer age = 19;
-        getMany(Student.class, "Kris", age).stream().forEach(s -> System.out.println(s));
     }
 
     public static <T> List<T> getMany(Class<T> c, Object... params) throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
@@ -48,8 +45,7 @@ public class Main {
         try {
             Constructor constructor = c.getConstructor(arr);
             for (int i = 0; i < count; i++) {
-                T o = (T) constructor.newInstance(params);
-                l.add(o);
+                l.add((T) constructor.newInstance(params));
             }
         }
         catch (NoSuchMethodException e){
