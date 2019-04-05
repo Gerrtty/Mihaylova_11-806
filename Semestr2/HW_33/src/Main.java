@@ -10,7 +10,7 @@ public class Main {
         b.insert(4);
         b.insert(7);
         b.insert(13);
-        b.remove(6);
+        b.remove(4);
         b.printAll();
     }
 }
