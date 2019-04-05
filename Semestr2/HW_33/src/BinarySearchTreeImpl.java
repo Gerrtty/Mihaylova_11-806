@@ -46,15 +46,16 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
     }
 
     private void remove(TreeNode root, T t) {
-        TreeNode parent = findParent(root, t);
         TreeNode current = find(root, t);
-        if (parent != null) {
-            // Если обоих детей нет, то удаляем текущий узел и обнуляем ссылку на него у родительского узла
+        // Если удаляемый узел не является корнем
+        if (root.value != current.value) {
+            TreeNode parent = findParent(root, t);
+            // Если обоих детей нет
             if (current.right == null && current.left == null) {
                 if (parent.right != null && parent.right.value.equals(current.value)) {
                     parent.right = null;
                 }
-                else if(parent.left != null && parent.left.value.equals(current.value)){
+                else {
                     parent.left = null;
                 }
             }
@@ -145,17 +146,14 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
             return null;
         }
         int res = root.value.compareTo(t);
-        if(res > 0){
-            if(parent.right != null && parent.right.value.compareTo(t) == 0 || parent.left != null && parent.left.value.compareTo(t) == 0){
-                return parent;
-            }
-            else parent = findParent(root.left, t);
+        if(parent.right != null && parent.right.value.compareTo(t) == 0 || parent.left != null && parent.left.value.compareTo(t) == 0){
+            return parent;
         }
-        if(res < 0){
-            if(parent.right != null && parent.right.value.compareTo(t) == 0 || parent.left != null && parent.left.value.compareTo(t) == 0){
-                return parent;
-            }
-            else parent = findParent(root.right, t);
+        else if (res > 0) {
+            parent = findParent(root.left, t);
+        }
+        else if(res < 0){
+            parent = findParent(root.right, t);
         }
         return parent;
     }
